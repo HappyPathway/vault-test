@@ -19,6 +19,12 @@ data "template_file" "init" {
   }
 }
 
+resource "null_resource" "null" {
+    provisioner "local-exec" {
+        command = "echo ${data.template_file.init.rendered}"
+
+    }
+}
 output "foo" {
     value = "${data.template_file.init.rendered}"
 }
